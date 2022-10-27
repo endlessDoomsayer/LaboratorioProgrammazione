@@ -18,9 +18,7 @@ public:
 	static Elem* find(Elem* elem, const std::string& name);
 
 	std::string getName() const { return this->name; }
-
 	
-
 private:
 	std::string name;
 	Elem* prec;

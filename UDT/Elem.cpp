@@ -8,21 +8,23 @@ Elem::Elem(std::string name, Elem* prec, Elem* succ)
 Elem::~Elem()
 {
 	Elem* curr = this;
-	removeNext(curr);
-	removePrev(curr);
+	curr = removeNext(curr);
+	curr = removePrev(curr);
 	delete this;
 }
 
 Elem* Elem::removeNext(Elem* elem){
-	if(elem->next()) removeNext(elem->next());
+	if(elem->next()) elem = removeNext(elem->next());
+	Elem* curr = elem->prev();
 	delete elem;
-	return nullptr;
+	return curr;
 }
 
 Elem* Elem::removePrev(Elem* elem){
 	if(elem->prev()) removePrev(elem->prev());
+	Elem* curr = elem->next();
 	delete elem;
-	return nullptr;
+	return curr;
 }
 
 Elem* Elem::insSucc(Elem* n) {

@@ -11,7 +11,7 @@ public:
 	
 	Rational operator+(const Rational& r);
 	
-	friend Rational operator+(const int& n, const Rational& r);
+	//friend Rational operator+(const int& n, const Rational& r);
 	
 	Rational operator-(const Rational& r);
 	
@@ -29,12 +29,17 @@ public:
 
 	double to_double();
 
+	int get_num() const { return this->num; }
+	int get_den() const { return this->den; }
+
 private:
 	int num, den;
 
 	int findMCM(const Rational& n2);
 
 };
+
+Rational operator+(const int& n, const Rational& r);
 
 class DenException : public std::exception {
 private:

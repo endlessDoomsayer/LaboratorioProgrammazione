@@ -34,7 +34,7 @@ void print(std::string output,const std::vector<int>& v){
 	std::cout << output;
 	//i indice unsigned perchè 1)è solo positivo e 2)non ci sono warning nel comparare i con v.size()
 	for(unsigned int i = 0; i < v.size(); i++){
-		std::cout << " " << std::to_string(v[i]);
+		std::cout << " " << v[i];
 													//ho usato la funzione std::to_string() perchè scrivere direttamente 
 													//la concatenazione faceva sorgere problemi di compatibilità dei tipi
 	}

@@ -19,7 +19,7 @@ Rational& Rational::operator=(const Rational& r){
 	return *this;
 }
 
-Rational Rational::operator+(const Rational& r){
+Rational Rational::operator+(const Rational& r) {
 	int newden = this->findMCM(r);
 	
 	int newnum = newden/this->den * this->num + newden/r.den * r.num;
@@ -27,9 +27,15 @@ Rational Rational::operator+(const Rational& r){
 	return Rational(newnum, newden);
 }
 
-Rational operator+(const int& n, const Rational& r){
+/*Rational operator+(const int& n, const Rational& r) {
 	int newnum = r.num + n*r.den;
 	return Rational(newnum, r.den);
+}*/
+
+Rational operator+(const int& n, const Rational& r)
+{
+	int newnum = r.get_num() + n * r.get_den();
+	return Rational(newnum, r.get_den());
 }
 
 Rational Rational::operator-(const Rational& r){

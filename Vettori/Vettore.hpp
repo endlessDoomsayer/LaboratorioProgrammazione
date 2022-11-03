@@ -39,7 +39,7 @@ class OutOfBoundsException : std::exception {
 public:
 	OutOfBoundsException(std::string t);
 
-	std::string printError(std::string t);
+	std::string printError();
 
 private:
 	std::string message;

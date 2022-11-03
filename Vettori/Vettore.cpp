@@ -2,15 +2,21 @@
 #include <iostream>
 
 Vettore::Vettore(std::initializer_list<double> list)
-	: sz{list.size()}, elems {new double[sz]}
+	: sz{ list.size() }
 {
+	this->elems = new double[sz];
+
 	std::cout << "constructor with initializer list" << std::endl;
 	std::copy(list.begin(), list.end(), elems);
+
+	
+
+	std::cout << "size: " << this->sz << std::endl;
 }
 
 Vettore::Vettore(size_t s)
 {
-	std::cout << "uninitialized constructor" << std::endl;
+	std::cout << "uninitialized constructor: size: " << s << std::endl;
 	this->sz = s;
 	this->elems = new double[s];
 }
@@ -119,7 +125,7 @@ OutOfBoundsException::OutOfBoundsException(std::string t)
 
 }
 
-std::string OutOfBoundsException::printError(std::string t)
+std::string OutOfBoundsException::printError()
 {
 	return this->message;
 }

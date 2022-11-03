@@ -18,6 +18,7 @@ namespace Prog4 {
 
 			v.safe_set(2, 12.3);
 			std::cout << "safe set v[2] <- 12.3: " << v[2] << std::endl;
+
 		}
 		catch (SizeException e) {
 			e.print();

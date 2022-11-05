@@ -6,14 +6,25 @@
 class MyVector
 {
 private:
-	int size;
+	size_t size;
 	double* v;
 public:
-	MyVector(int size);
+	MyVector(std::initializer_list<double> list);
+	MyVector(size_t size);
+	//copy constructor
+	MyVector(MyVector& v);
+	//move constructor
+	MyVector(MyVector&& v);
+	
 	~MyVector();
 
 	double& operator[](int id);
 	double operator[](int id) const;
+
+	//copy assignment
+	MyVector& operator=(const MyVector& v);
+	//move assignment
+	MyVector& operator=(MyVector&& v);
 
 	void safe_set(int id, double val);
 	double safe_get(int id);

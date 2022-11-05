@@ -1,15 +1,12 @@
 #include "Vettore.hpp"
-#include <iostream>
 
 Vettore::Vettore(std::initializer_list<double> list)
-	: sz{ list.size() }
+	: sz{list.size()}
 {
 	this->elems = new double[sz];
 
 	std::cout << "constructor with initializer list" << std::endl;
 	std::copy(list.begin(), list.end(), elems);
-
-	
 
 	std::cout << "size: " << this->sz << std::endl;
 }
@@ -22,8 +19,9 @@ Vettore::Vettore(size_t s)
 }
 
 Vettore::Vettore(Vettore& v)
-	: sz{v.sz}, elems{new double[sz]}
+	: sz{v.sz}
 {
+	this->elems = new double[sz];
 	std::cout << "copy constructor" << std::endl;
 
 	std::copy(v.elems, v.elems+this->sz, this->elems);
@@ -50,7 +48,7 @@ Vettore& Vettore::operator=(const Vettore& v)
 	std::cout << "deep copy" << std::endl;
 
 	double* p = new double[v.sz];
-	std::copy(v.elems, v.elems + sz, p);
+	std::copy(v.elems, v.elems + v.sz, p);
 	delete[] this->elems;
 
 	this->elems = p;

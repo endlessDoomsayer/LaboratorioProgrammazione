@@ -1,14 +1,16 @@
-#pragma once
+#ifndef VETTORE
+#define VETTORE
 #include <initializer_list>
 #include <algorithm>
 #include <exception>
 #include <string>
+#include <iostream>
 
 class Vettore
 {
 private:
-	double* elems;
 	size_t sz;
+	double* elems;
 
 public:
 	Vettore(std::initializer_list<double> list);
@@ -19,7 +21,7 @@ public:
 	Vettore(Vettore&& v);
 	~Vettore();
 
-	//deep copy assignment
+	//copy assignment
 	Vettore& operator=(const Vettore& v);
 	//move assignment
 	Vettore& operator=(Vettore&& v);
@@ -45,3 +47,5 @@ private:
 	std::string message;
 
 };
+
+#endif

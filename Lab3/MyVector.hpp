@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MyVector_h
+#define MyVector_h
 #include <exception>
 #include <string>
 #include <iostream>
@@ -40,3 +41,5 @@ public:
 
 	void print() { std::cout << this->message; }
 };
+
+#endif

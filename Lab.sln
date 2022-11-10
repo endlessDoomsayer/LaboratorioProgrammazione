@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vettori", "Vettori\Vettori.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab3", "Lab3\Lab3.vcxproj", "{669A9612-1B9D-4D9F-B2A3-F34F4DE306AF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab4", "Lab4\Lab4.vcxproj", "{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{669A9612-1B9D-4D9F-B2A3-F34F4DE306AF}.Release|x64.Build.0 = Release|x64
 		{669A9612-1B9D-4D9F-B2A3-F34F4DE306AF}.Release|x86.ActiveCfg = Release|Win32
 		{669A9612-1B9D-4D9F-B2A3-F34F4DE306AF}.Release|x86.Build.0 = Release|Win32
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Debug|x64.ActiveCfg = Debug|x64
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Debug|x64.Build.0 = Debug|x64
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Debug|x86.Build.0 = Debug|Win32
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Release|x64.ActiveCfg = Release|x64
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Release|x64.Build.0 = Release|x64
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Release|x86.ActiveCfg = Release|Win32
+		{D8FD26C4-684F-41B5-8D72-EEFBA5D50E87}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

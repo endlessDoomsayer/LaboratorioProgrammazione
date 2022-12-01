@@ -4,44 +4,60 @@
 #include "VectorT.h"
 
 template<typename T>
-void VectorT<T>::resize()
+void VectorT<T>::reserve(size_t size)
 {
-	sz_p *= RESIZE_FACTOR;
-	T* elems = new T[sz_p];
-	std::copy(&this->elems[0], &this->elems[sz_v - 1], elems);
-
-	delete[] this->elems;
-
-	this->elems = elems;
-}
-
-template <typename T>
-VectorT<T>::VectorT(T* elems, size_t size)
-	: sz_v{size}, sz_p{sz_v*2}, elems{new T[sz_p]}
-{
-	for (int i = 0; i < sz_v; i++) {
-		this->elems[i] = elems[i];
+	if (sz_p < size) {
+		sz_p = size;
+		T* elems = new T[size];
+		std::copy(this->elems, &this->elems[sz_v], elems);
+		delete[] this->elems;
+		this->elems = elems;
 	}
 }
 
 template <typename T>
+VectorT<T>::VectorT(T* elems, size_t size)
+	: sz_v{size}, sz_p{size}, elems{new T[size]}
+{
+	std::copy(elems, &elems[size], this->elems);
+}
+
+template <typename T>
 VectorT<T>::VectorT(std::initializer_list<T> list)
-	: sz_v{list.size()}, sz_p{sz_v*2}, elems{new T[sz_p]}
+	: sz_v{list.size()}, sz_p{list.size()}, elems{new T[list.size()]}
 {
 	std::copy(list.begin(), list.end(), elems);
 }
 
 template<typename T>
-VectorT<T>::VectorT()
-	: sz_v{0}, sz_p{5}, elems{new T[sz_p]}
+VectorT<T>::VectorT(size_t size)
+	: sz_v{0}, sz_p{size}, elems{new T[size]}
 {
+}
+
+template<typename T>
+VectorT<T>::VectorT(const VectorT<T>& v)
+	: sz_v{v.sz_v}, sz_p{v.sz_p}, elems{new T[v.sz_p]}
+{
+	std::cout << " copy constructor\n";
+	std::copy(v.elems, &v.elems[v.sz_v], elems);
+}
+
+template<typename T>
+VectorT<T>::VectorT(VectorT<T>&& v)
+	: sz_v{ v.sz_v }, sz_p{ v.sz_p }, elems{ v.elems }
+{
+	std::cout << " move constructor\n";
+	v.elems = nullptr;
+	v.sz_v = 0;
+	v.sz_p = 0;
 }
 
 template<typename T>
 T VectorT<T>::push_back(T t)
 {
 	if (sz_v == sz_p) {
-		resize();
+		reserve(sz_p * 2);
 	}
 	
 	elems[sz_v] = t;
@@ -82,9 +98,38 @@ T& VectorT<T>::operator[](const size_t id)
 }
 
 template<typename T>
-T VectorT<T>::operator[](const size_t id) const
+T VectorT<T>::operator[] (const size_t id) const
 {
 	return elems[id];
+}
+
+template<typename T>
+T& VectorT<T>::operator=(const VectorT<T>& v) {
+	std::cout << " copy assignment\n";
+	delete[] elems;
+	sz_v = v.sz_v;
+	sz_p = v.sz_p;
+
+	elems = new T[v.size_p];
+	std::copy(&v[0], &v[v.sz_v], elems);
+
+	return *this;
+}
+
+template<typename T>
+T& VectorT<T>::operator=(VectorT<T>&& v) {
+	std::cout << " move assignment\n";
+	delete[] elems;
+	sz_v = v.sz_v;
+	sz_p = v.sz_p;
+
+	elems = v.elems;
+	
+	v.elems = nullptr;
+	v.sz_v = 0;
+	v.sz_p = 0;
+
+	return *this;
 }
 
 

@@ -1,23 +1,29 @@
 #include "VectorT.h"
 #include <iostream>
 
+VectorT<char> genVectorChar() {
+	VectorT<char> vettore{ 'a','b','c' };
+	return vettore;
+}
+
 int main() {
 
-	VectorT<int> v{ 1,2,3,4,5 };
+	VectorT<char> v{ '1','2','3','4','5' };
 
-	std::cout << "size: " << v.getSize() << ", elements: " << v;
-	
-	
+	std::cout << "size: " << v.getSize() << ", elements: " << v << std::endl;
 
-	v.push_back(1);
+	v.push_back('1');
+	v.push_back('2');
+	v.push_back('3');
+	v.push_back('4');
+	v.push_back('5');
+	v.push_back('1');
+	v.push_back('1');
 
-	std::cout << v;
-	/*v.push_back(2);
-	v.push_back(3);
-	v.push_back(4);
-	v.push_back(5);
-	v.push_back(100);
-	v.push_back(200);*/
+	VectorT<char> vnuovo = genVectorChar();
+
+	std::cout << " elements: " << vnuovo;
+
 
 	return 0;
 }

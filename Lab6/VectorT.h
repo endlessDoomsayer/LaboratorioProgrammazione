@@ -10,7 +10,6 @@ template <typename T>
 class VectorT
 {
 private:
-	static const unsigned int RESIZE_FACTOR = 2;
 	size_t sz_v; //virtual size
 	size_t sz_p; //physical size
 	T* elems;

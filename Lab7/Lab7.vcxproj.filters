@@ -27,6 +27,9 @@
     <ClInclude Include="Tile.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="RightHandRobot.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Maze.cpp">
@@ -42,6 +45,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="RightHandRobot.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

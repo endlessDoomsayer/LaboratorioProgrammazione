@@ -53,8 +53,10 @@ Maze::Maze(std::string filename)
 	readMapfromFile();
 }
 
-const Tile Maze::getTile(int x, int y)
+const Tile Maze::getTile(const Tile t)
 {
+	int y = t.getY();
+	int x = t.getX();
 	if (y < HEIGHT && x < WIDTH && y >= 0 && x >= 0)
 		return map[y][x];
 	else return '0';
@@ -81,6 +83,30 @@ void Maze::move(Tile from, Tile to)
 	map[to.getY()][to.getX()].setValue(to.getValue());
 }
 
+Tile Maze::getRight(Tile pos)
+{
+	if (pos.getX() + 1 < WIDTH && map[pos.getY()][pos.getX()+1].getValue() != '*') return map[pos.getY()][pos.getX() + 1];
+	return pos;
+}
+
+Tile Maze::getTop(Tile pos)
+{
+	if (pos.getY() - 1 >= 0 && map[pos.getY()-1][pos.getX()].getValue() != '*') return map[pos.getY()-1][pos.getX()];
+	return pos;
+}
+
+Tile Maze::getLeft(Tile pos)
+{
+	if (pos.getX() - 1 >= 0 && map[pos.getY()][pos.getX() - 1].getValue() != '*') return map[pos.getY()][pos.getX() - 1];
+	return pos;
+}
+
+Tile Maze::getBottom(Tile pos)
+{
+	if (pos.getY() + 1 < HEIGHT && map[pos.getY()+1][pos.getX()].getValue() != '*') return map[pos.getY() + 1][pos.getX()];
+	return pos;
+}
+
 bool Maze::isResolved()
 {
 	for (int i = 0; i < exits.size(); i++)
@@ -93,7 +119,7 @@ std::ostream& operator<<(std::ostream& os, Maze maze)
 {
 	for (int y = 0; y < maze.getHeight(); y++) {
 		for (int x = 0; x < maze.getWidth(); x++)
-			os << maze.getTile(x,y);
+			os << maze.getTile(Tile(x,y));
 		os << "\n";
 	}
 

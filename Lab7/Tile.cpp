@@ -6,6 +6,18 @@ Tile::Tile(int x, int y, char value)
 {
 }
 
+bool Tile::operator==(const Tile& t)
+{
+	if (this->x == t.x && this->y == t.y && this->value == t.value) return true;
+	return false;
+}
+
+bool Tile::operator!=(const Tile& t)
+{
+	if (*this == t) return false;
+	return true;
+}
+
 /*Tile& Tile::operator=(const Tile& t)
 {
 	this->x = t.x;

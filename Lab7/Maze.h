@@ -25,11 +25,16 @@ public:
 
 	const int getHeight() { return HEIGHT; }
 	const int getWidth() { return WIDTH; }
-	const Tile getTile(int x, int y);
+	const Tile getTile(const Tile t);
 	const Tile getRobotPos() { return robotPos; }
 	const std::vector<Tile> getSurroundingValidTiles(Tile curr);
 	void setRobotPos(Tile pos) { this->robotPos = pos; }
 	void move(Tile from, Tile to);
+
+	Tile getRight(Tile pos);
+	Tile getTop(Tile pos);
+	Tile getLeft(Tile pos);
+	Tile getBottom(Tile pos);
 
 	bool isResolved();
 };

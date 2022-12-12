@@ -33,16 +33,16 @@ void Maze::readMapfromFile()
 {
 	std::ifstream isfile(this->filename);
 
-	this->map = new Tile<char>*[HEIGHT];
+	this->map = new Tile*[HEIGHT];
 
-	for (int i = 0; i < HEIGHT; i++) {
+	for (int y = 0; y < HEIGHT; y++) {
 		std::string line = "";
 		std::getline(isfile, line, '\n');
-		map[i] = new Tile<char>[WIDTH];
-		for (int j = 0; j < WIDTH; j++) {
-			map[i][j].setValue(line.at(j));
-			map[i][j].setY(i);
-			map[i][j].setX(j);
+		map[y] = new Tile[WIDTH];
+		for (int x = 0; x < WIDTH; x++) {
+			map[y][x] = Tile(x,y,line.at(x));
+			if (map[y][x].getValue() == 'S') robotPos = map[y][x];
+			else if (map[y][x].getValue() == 'E') exits.push_back(map[y][x]);
 		}
 	}
 }
@@ -53,16 +53,47 @@ Maze::Maze(std::string filename)
 	readMapfromFile();
 }
 
-const Tile<char> Maze::getTile(Position p)
+const Tile Maze::getTile(int x, int y)
 {
-	return map[p.getY()][p.getX()];
+	if (y < HEIGHT && x < WIDTH && y >= 0 && x >= 0)
+		return map[y][x];
+	else return '0';
+}
+
+const std::vector<Tile> Maze::getSurroundingValidTiles(Tile curr)
+{
+	std::vector<Tile> surroundings;
+
+	int ofX = curr.getX();
+	int ofY = curr.getY();
+
+	if (ofY - 1 >= 0) if (map[ofY - 1][ofX].getValue() != '*') surroundings.push_back(map[ofY - 1][ofX]);
+	if (ofY + 1 < HEIGHT) if (map[ofY + 1][ofX].getValue() != '*') surroundings.push_back(map[ofY + 1][ofX]);
+	if (ofX - 1 >= 0) if (map[ofY][ofX - 1].getValue() != '*') surroundings.push_back(map[ofY][ofX - 1]);
+	if (ofX + 1 < WIDTH) if (map[ofY][ofX + 1].getValue() != '*') surroundings.push_back(map[ofY][ofX + 1]);
+
+	return surroundings;
+}
+
+void Maze::move(Tile from, Tile to)
+{
+	map[from.getY()][from.getX()].setValue(from.getValue());
+	map[to.getY()][to.getX()].setValue(to.getValue());
+}
+
+bool Maze::isResolved()
+{
+	for (int i = 0; i < exits.size(); i++)
+		if (exits[i].getX() == robotPos.getX() && exits[i].getY() == robotPos.getY()) return true;
+
+	return false;
 }
 
 std::ostream& operator<<(std::ostream& os, Maze maze)
 {
-	for (int i = 0; i < maze.getHeight(); i++) {
-		for (int j = 0; j < maze.getWidth(); j++)
-			os << maze.getTile(Position(j,i)).getValue();
+	for (int y = 0; y < maze.getHeight(); y++) {
+		for (int x = 0; x < maze.getWidth(); x++)
+			os << maze.getTile(x,y);
 		os << "\n";
 	}
 

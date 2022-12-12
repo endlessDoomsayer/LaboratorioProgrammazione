@@ -1,4 +1,6 @@
-#include "Vector.h"
+#ifndef Vector_hpp
+#define Vector_hpp
+
 template<typename T>
 Vector<T>::Vector(std::initializer_list<T> list)
 	:size{list.size()}, elems{new T[size]}
@@ -29,3 +31,5 @@ template<typename T>
 T find_max(T e1, T e2) {
 	return e1 > e2 ? e1 : e2;
 }
+
+#endif

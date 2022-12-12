@@ -3,15 +3,18 @@
 
 #include <fstream>
 #include <string>
-
+#include <vector>
 #include "Tile.h"
+#include <iostream>
 
 class Maze
 {
 private:
 	std::string filename;
 	const int HEIGHT, WIDTH;
-	Tile<char>** map;
+	Tile** map;
+	Tile robotPos;
+	std::vector<Tile> exits;
 
 	const int initHEIGHT();
 	const int initWIDTH();
@@ -22,8 +25,13 @@ public:
 
 	const int getHeight() { return HEIGHT; }
 	const int getWidth() { return WIDTH; }
-	const Tile<char> getTile(Position p);
-	
+	const Tile getTile(int x, int y);
+	const Tile getRobotPos() { return robotPos; }
+	const std::vector<Tile> getSurroundingValidTiles(Tile curr);
+	void setRobotPos(Tile pos) { this->robotPos = pos; }
+	void move(Tile from, Tile to);
+
+	bool isResolved();
 };
 
 std::ostream& operator<<(std::ostream& os, Maze maze);

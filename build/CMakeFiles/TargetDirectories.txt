@@ -1,0 +1,2 @@
+D:/Scuola/UNI/Lab Programmazione/Lab/build/CMakeFiles/edit_cache.dir
+D:/Scuola/UNI/Lab Programmazione/Lab/build/CMakeFiles/rebuild_cache.dir

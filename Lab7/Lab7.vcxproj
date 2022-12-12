@@ -128,14 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Maze.h" />
-    <ClInclude Include="Position.h" />
+    <ClInclude Include="RandomRobot.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Tile.h" />
-    <ClInclude Include="Tile.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Maze.cpp" />
-    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="RandomRobot.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

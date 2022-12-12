@@ -1,21 +1,27 @@
 #ifndef Tile_H
 #define Tile_H
-#include "Position.h"
 
-template <typename T>
-class Tile :
-    public Position
+#include <ostream>
+
+class Tile
 {
 private:
-    T value;
+	int x, y;
+	char value;
 
 public:
-    Tile(T value, int x, int y);
-    Tile() {}
-    T getValue() const { return value; }
-    void setValue(T value) { this->value = value; }
+	Tile(int x = 0, int y = 0, char value = ' ');
+	int getX() { return x; }
+	int getY() { return y; }
+	char getValue() { return value; }
+	void setX(int x) { this->x = x; }
+	void setY(int y) { this->y = y; }
+	void setPos(int x, int y) { this->x = x; this->y = y; }
+	void setValue(char value) { this->value = value; }
+
+	//Tile& operator=(const Tile& t);
 };
 
-#include "Tile.hpp"
+std::ostream& operator<<(std::ostream& os, Tile tile);
 
 #endif

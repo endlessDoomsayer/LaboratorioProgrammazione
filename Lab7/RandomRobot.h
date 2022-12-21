@@ -3,15 +3,17 @@
 
 #include "Robot.h"
 
-class RandomRobot : public Robot
+class RandomRobot :
+    public Robot
 {
 private:
 
 public:
-    RandomRobot(Tile tile) : Robot(tile) { std::srand(std::time(NULL)); }
+    RandomRobot(Tile tile, Direction dir = up) : Robot(tile, dir) {}
 
+    void start();
     void move(Maze& maze);
+    Pos moveforward();
 };
-
 
 #endif

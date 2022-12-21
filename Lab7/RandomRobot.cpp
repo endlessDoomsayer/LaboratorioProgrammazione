@@ -1,14 +1,37 @@
 #include "RandomRobot.h"
 
+void RandomRobot::start()
+{
+	srand(time(NULL));
+}
+
 void RandomRobot::move(Maze& maze)
 {
-	std::vector<Tile> surroundings = maze.getSurroundingValidTiles(pos);
+	const std::vector<Tile*> surrEmptyTiles = maze.getSurroundingEmptyTiles(this->tile.getPos());
 
-	int rng = std::rand() % surroundings.size();
+	if (!wall_found) if (surrEmptyTiles.size() < 4) wall_found = true;
 
-	maze.move(Tile(pos.getX(), pos.getY(), '.'), Tile(surroundings[rng].getX(), surroundings[rng].getY(), 'S'));
+	int choice = std::rand() % surrEmptyTiles.size();
 
-	pos.setPos(surroundings[rng].getX(), surroundings[rng].getY());
-	
-	maze.setRobotPos(pos);
+	dir = maze.calcDirByAdiacTile(surrEmptyTiles[choice]);
+
+	maze.setRobotTile(moveforward(), getTrailFromDir());
+
+	this->tile = maze.getRobotTileId();
+}
+
+Pos RandomRobot::moveforward()
+{
+	switch (dir.getValue()) {
+	case up:
+		return Pos(tile.getX(), tile.getY() - 1);
+	case down:
+		return Pos(tile.getX(), tile.getY() + 1);
+	case right:
+		return Pos(tile.getX() + 1, tile.getY());
+	case left: 
+		return Pos(tile.getX() - 1, tile.getY());
+	}
+
+	return tile.getPos();
 }

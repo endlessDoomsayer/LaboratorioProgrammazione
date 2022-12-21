@@ -1,29 +1,25 @@
 #ifndef Tile_H
 #define Tile_H
 
+#include "Elem.h"
+#include "Pos.h"
+
 #include <ostream>
 
-class Tile
+class Tile : public Elem, public Pos
 {
 private:
-	int x, y;
-	char value;
 
 public:
-	Tile(int x = 0, int y = 0, char value = ' ');
-	int getX() const { return x; }
-	int getY() const { return y; }
-	char getValue() const { return value; }
-	void setX(int x) { this->x = x; }
-	void setY(int y) { this->y = y; }
-	void setPos(int x, int y) { this->x = x; this->y = y; }
-	void setValue(char value) { this->value = value; }
+	Tile(Pos pos = Pos(0,0), Elem elem = Elem(' ', 0)) : Pos(pos), Elem(elem) {}
 
-	bool operator==(const Tile& t);
-	bool operator!=(const Tile& t);
-	//Tile& operator=(const Tile& t);
+	Pos getPos() const { return Pos(this->x, this->y); }
+	Elem getElem() const { return Elem(this->val, this->solid); }
+
+	void setPos(Pos pos) { this->x = pos.getX(); this->y = pos.getY(); }
+	void setElem(Elem elem) { this->val = elem.getVal(); this->solid = elem.isSolid(); }
 };
 
-std::ostream& operator<<(std::ostream& os, Tile tile);
+std::ostream& operator<<(std::ostream& os, const Tile& tile);
 
 #endif

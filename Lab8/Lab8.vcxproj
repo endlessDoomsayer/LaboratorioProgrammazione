@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{44d340d9-cce1-4887-948c-825a0ff00127}</ProjectGuid>
-    <RootNamespace>Lab7</RootNamespace>
+    <ProjectGuid>{26834fc6-cd2f-40ad-a397-e778706c3c2a}</ProjectGuid>
+    <RootNamespace>Lab8</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,23 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Direction.h" />
-    <ClInclude Include="Elem.h" />
-    <ClInclude Include="Maze.h" />
-    <ClInclude Include="Pos.h" />
-    <ClInclude Include="RandomRobot.h" />
-    <ClInclude Include="Robot.h" />
-    <ClInclude Include="Tile.h" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Unique_ptr.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Direction.cpp" />
-    <ClCompile Include="Elem.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Maze.cpp" />
-    <ClCompile Include="Pos.cpp" />
-    <ClCompile Include="RandomRobot.cpp" />
-    <ClCompile Include="Robot.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClInclude Include="Unique_ptr.h" />
+    <ClInclude Include="Unique_ptr.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

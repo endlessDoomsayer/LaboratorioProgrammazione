@@ -4,42 +4,40 @@
 #include <fstream>
 #include <string>
 #include <vector>
+
 #include "Tile.h"
-#include <iostream>
+#include "Direction.h"
 
 class Maze
 {
 private:
-	std::string filename;
-	const int HEIGHT, WIDTH;
-	Tile** map;
-	Tile robotPos;
-	std::vector<Tile> exits;
+	const Elem ROBOT_ELEM = Elem('S', 1);
 
-	const int initHEIGHT();
-	const int initWIDTH();
+	std::string filename;
+
+	Tile** map;
+
+	Tile* robotTileId;
+	std::vector<Tile*> exitTileIds;
+
 	void readMapfromFile();
 
 public:
+	static const int WIDTH = 9, HEIGHT = 9;
+
 	Maze(std::string filename);
+	
+	Tile** getMap() { return map; }
+	const Tile& getRobotTileId() const { return *robotTileId; }
+	Pos setRobotTile(Pos npos, Elem oldElem);
+	const std::vector<Tile*>& getExitTileIds() const { return exitTileIds; }
+	Direction calcDirByAdiacTile(Tile* adiacent);
+	const std::vector<Tile*> getSurroundingEmptyTiles(const Pos pos) const;
 
-	const int getHeight() { return HEIGHT; }
-	const int getWidth() { return WIDTH; }
-	const Tile getTile(const Tile t);
-	const Tile getRobotPos() { return robotPos; }
-	const std::vector<Tile> getSurroundingValidTiles(Tile curr);
-	void setRobotPos(Tile pos) { this->robotPos = pos; }
-	void move(Tile from, Tile to);
-
-	Tile getRight(Tile pos);
-	Tile getTop(Tile pos);
-	Tile getLeft(Tile pos);
-	Tile getBottom(Tile pos);
-
-	bool isResolved();
+	const bool isResolved() const;
 };
 
-std::ostream& operator<<(std::ostream& os, Maze maze);
+std::ostream& operator<<(std::ostream& os, Maze& maze);
 
 
 #endif
